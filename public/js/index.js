@@ -3,10 +3,6 @@
     socket.on('connect', function () {
         console.log('connected to server');
 
-        socket.emit('newMessage', {
-            from:'Grayson',
-            text:'hey this is gray'
-        });
 
     });
     socket.on('disconnect', function ()  {
@@ -14,5 +10,5 @@
     });
 
 socket.on('newMessage', function (message){
-    console.log('new Message', message);
+    console.log('newMessage', message);
 });
