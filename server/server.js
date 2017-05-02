@@ -7,7 +7,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 
 //load local files
-const {generateMessage} = require('./utils/message')
+const {generateMessage, generateLocationMessage} = require('./utils/message')
 
 //set up app, server and io vars
 var app = express();
@@ -44,7 +44,9 @@ socket.on('createMessage', (message, callback) => {
         //     createdAt: new Date().getTime()
         // });
     });
-
+socket.on('createLocationMessage', (coords) => {
+    io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitide , coords.longitude))
+});
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
